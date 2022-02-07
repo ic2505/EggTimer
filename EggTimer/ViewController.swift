@@ -14,14 +14,18 @@ class ViewController: UIViewController {
     
     var secondsRemaining = 60 // initialize with random value
     
+    var timer = Timer()
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
+        
+        timer.invalidate()
         
         let hardness = sender.currentTitle!
         
         secondsRemaining = eggTimes[hardness]! // reassign actual time
         
         // Timer init: updates every 1.0 seconds, repeats every second, selector needs a function name to call every second. To call this function we need @objc because its remnant from objective C Times. Will be clarified later.
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
     }
     
